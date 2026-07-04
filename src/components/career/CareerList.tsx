@@ -22,7 +22,7 @@ export function CareerList() {
       </div>
       <h1 className="mb-3 text-3xl font-extrabold tracking-tight">職歴・プロジェクト経歴</h1>
       <p className="mb-3 text-sm" style={{ color: "var(--text-muted)" }}>
-        直近から順に、担当プロジェクトを6件掲載しています。カードをクリックすると詳細が開きます。
+        直近から順に、担当プロジェクトを{projects.length}件掲載しています。カードをクリックすると詳細が開きます。
       </p>
       <div className="mb-10 flex justify-end gap-2">
         <button

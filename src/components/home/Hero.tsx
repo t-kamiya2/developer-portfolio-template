@@ -1,9 +1,10 @@
 "use client";
 
+import { Fragment } from "react";
 import Link from "next/link";
 import { useTheme } from "@/components/theme/ThemeProvider";
 import { themeCopy } from "@/lib/theme-copy";
-import { profile } from "@/lib/portfolio-data";
+import { profile, projects } from "@/lib/portfolio-data";
 
 const ctaButtonStyle = (bg: string, color: string, mono: boolean): React.CSSProperties => ({
   background: bg,
@@ -21,7 +22,7 @@ export function Hero() {
       className="mb-4 text-xs font-bold tracking-wider"
       style={{ fontFamily: "var(--font-mono)", color: "var(--accent)" }}
     >
-      {copy.eyebrowPrefix}FULL-STACK ENGINEER
+      {copy.eyebrowPrefix}{profile.heroEyebrow}
     </div>
   );
 
@@ -30,11 +31,12 @@ export function Hero() {
       className="mb-5 font-extrabold tracking-tight"
       style={{ fontSize: isTerminal ? 48 : 46, lineHeight: 1.27 }}
     >
-      要件定義から運用まで、
-      <br />
-      一貫して任せられる
-      <br />
-      エンジニアです。
+      {profile.heroHeadline.map((line, i) => (
+        <Fragment key={line}>
+          {i > 0 && <br />}
+          {line}
+        </Fragment>
+      ))}
     </h1>
   );
 
@@ -92,7 +94,7 @@ export function Hero() {
           </div>
           <div className="p-6" style={{ background: "var(--card)" }}>
             <div className="font-bold" style={{ fontFamily: "var(--font-mono)", fontSize: 30, color: "var(--accent-orange)" }}>
-              {copy.projectStat2}
+              {copy.projectCount(projects.length)}
             </div>
             <div className="mt-1.5 text-xs" style={{ color: "var(--text-muted)" }}>
               主要プロジェクト
@@ -100,10 +102,10 @@ export function Hero() {
           </div>
           <div className="p-6" style={{ background: "var(--card)" }}>
             <div className="font-bold" style={{ fontFamily: "var(--font-mono)", fontSize: 20, color: "var(--accent-purple)" }}>
-              Full-stack
+              {profile.heroStackLabel}
             </div>
             <div className="mt-1.5 text-xs" style={{ color: "var(--text-muted)" }}>
-              要件定義〜保守運用
+              {profile.heroStackSubLabel}
             </div>
           </div>
         </div>
@@ -131,7 +133,7 @@ export function Hero() {
         <div className="grid grid-cols-2 gap-3.5">
           <div className="rounded-2xl border p-5" style={{ background: "var(--accent-orange-soft)", borderColor: "var(--border)" }}>
             <div className="text-2xl font-extrabold" style={{ color: "var(--accent-orange)" }}>
-              {copy.projectStat2}
+              {copy.projectCount(projects.length)}
             </div>
             <div className="mt-0.5 text-xs" style={{ color: "var(--text-muted)" }}>
               主要プロジェクト
@@ -139,10 +141,10 @@ export function Hero() {
           </div>
           <div className="rounded-2xl border p-5" style={{ background: "var(--accent-purple-soft)", borderColor: "var(--border)" }}>
             <div className="text-2xl font-extrabold" style={{ color: "var(--accent-purple)" }}>
-              Full-stack
+              {profile.heroStackLabel}
             </div>
             <div className="mt-0.5 text-xs" style={{ color: "var(--text-muted)" }}>
-              要件定義〜保守運用
+              {profile.heroStackSubLabel}
             </div>
           </div>
         </div>
