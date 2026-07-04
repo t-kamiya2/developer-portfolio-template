@@ -1,0 +1,113 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: var(--font-noto-sans-jp);
+  /* Falls back to the (self-hosted) Japanese font for any CJK characters
+     mixed into mono-styled labels, instead of a possibly-missing system font. */
+  --font-mono: var(--font-ibm-plex-mono), var(--font-noto-sans-jp), monospace;
+}
+
+:root {
+  --radius-card: 14px;
+}
+
+/* Option A — light, pale, soft */
+[data-theme="pale"] {
+  --surface: oklch(98% 0.008 250);
+  --surface-alt: #fff;
+  --surface-2: oklch(97% 0.015 250);
+  --card: #fff;
+  --nav-bg: oklch(98% 0.008 250 / 0.9);
+  --border: oklch(90% 0.02 250);
+
+  --text: oklch(24% 0.02 250);
+  --text-secondary: oklch(35% 0.02 250);
+  --text-muted: oklch(45% 0.02 250);
+  --text-faint: oklch(55% 0.02 250);
+
+  --accent: oklch(52% 0.15 250);
+  --accent-soft: oklch(94% 0.035 250);
+  --accent-orange: oklch(52% 0.15 55);
+  --accent-orange-soft: oklch(95% 0.035 55);
+  --accent-purple: oklch(48% 0.13 290);
+  --accent-purple-soft: oklch(95% 0.03 290);
+
+  --selection: oklch(85% 0.06 250);
+
+  --level-a: oklch(55% 0.15 250);
+  --level-b: oklch(62% 0.12 200);
+  --level-c: oklch(65% 0.13 130);
+  --level-d: oklch(68% 0.13 80);
+  --level-e: oklch(70% 0.02 250);
+  --level-none: oklch(85% 0.01 250);
+  --level-text-on: #fff;
+  --level-text-off: oklch(45% 0.01 250);
+
+  --step-active-bg: oklch(93% 0.05 250);
+  --step-active-text: oklch(45% 0.15 250);
+  --step-inactive-bg: oklch(96% 0.01 250);
+  --step-inactive-text: oklch(65% 0.01 250);
+
+  --cta-text: #fff;
+}
+
+/* Option B — dark, terminal-styled */
+[data-theme="terminal"] {
+  --surface: oklch(16% 0.014 250);
+  --surface-alt: oklch(13% 0.012 250);
+  --surface-2: oklch(14% 0.012 250);
+  --card: oklch(19% 0.015 250);
+  --nav-bg: oklch(16% 0.014 250 / 0.88);
+  --border: oklch(28% 0.02 250);
+
+  --text: oklch(94% 0.005 250);
+  --text-secondary: oklch(72% 0.008 250);
+  --text-muted: oklch(65% 0.01 250);
+  --text-faint: oklch(60% 0.01 250);
+
+  --accent: oklch(72% 0.15 250);
+  --accent-soft: oklch(22% 0.02 250);
+  --accent-orange: oklch(78% 0.15 55);
+  --accent-orange-soft: oklch(28% 0.06 55);
+  --accent-purple: oklch(80% 0.12 290);
+  --accent-purple-soft: oklch(28% 0.05 290);
+
+  --selection: oklch(40% 0.1 250);
+
+  --level-a: oklch(72% 0.15 250);
+  --level-b: oklch(74% 0.13 200);
+  --level-c: oklch(78% 0.14 130);
+  --level-d: oklch(80% 0.13 80);
+  --level-e: oklch(50% 0.01 250);
+  --level-none: oklch(32% 0.01 250);
+  --level-text-on: oklch(14% 0.01 250);
+  --level-text-off: oklch(65% 0.01 250);
+
+  --step-active-bg: oklch(28% 0.06 250);
+  --step-active-text: oklch(80% 0.13 250);
+  --step-inactive-bg: oklch(22% 0.01 250);
+  --step-inactive-text: oklch(50% 0.01 250);
+
+  --cta-text: oklch(14% 0.01 250);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background: var(--surface);
+  color: var(--text);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+::selection {
+  background: var(--selection);
+}
