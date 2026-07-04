@@ -6,6 +6,10 @@ export interface Profile {
   tagline: string;
   years: string;
   summary: string[];
+  heroEyebrow: string;
+  heroHeadline: string[];
+  heroStackLabel: string;
+  heroStackSubLabel: string;
 }
 
 export interface Strength {
@@ -51,6 +55,10 @@ export const profile: Profile = {
     "SIer企業での受託開発・社内SEを経てフリーランスへ。Javaでのバックエンド開発を軸に、C#・JavaScript/TypeScript・Vue.js・React・Pythonを習得しフルスタックで従事しています。",
     "近年はAWS/GCP/Azureを問わずクラウドインフラの構築も経験。AIコーディングはClaude Codeを日常的に活用しています。",
   ],
+  heroEyebrow: "FULL-STACK ENGINEER",
+  heroHeadline: ["要件定義から運用まで、", "一貫して任せられる", "エンジニアです。"],
+  heroStackLabel: "Full-stack",
+  heroStackSubLabel: "要件定義〜保守運用",
 };
 
 export const strengths: Strength[] = [
