@@ -111,3 +111,11 @@ body {
 ::selection {
   background: var(--selection);
 }
+
+.theme-toggle-trigger:hover {
+  background: var(--surface-2);
+}
+
+.theme-toggle-item:hover {
+  background: var(--surface);
+}

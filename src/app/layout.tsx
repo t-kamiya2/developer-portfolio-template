@@ -26,7 +26,14 @@ const noFlashScript = `
 (function () {
   try {
     var stored = window.localStorage.getItem("portfolio-theme");
-    var theme = stored === "terminal" ? "terminal" : "pale";
+    var theme;
+    if (stored === "terminal" || stored === "pale") {
+      theme = stored;
+    } else if (stored === "system") {
+      theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "terminal" : "pale";
+    } else {
+      theme = "pale";
+    }
     document.documentElement.setAttribute("data-theme", theme);
   } catch (e) {}
 })();

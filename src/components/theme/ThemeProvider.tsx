@@ -5,34 +5,52 @@ import type { ThemeId } from "@/lib/theme-copy";
 
 const STORAGE_KEY = "portfolio-theme";
 
+export type ThemePreference = ThemeId | "system";
+
 interface ThemeContextValue {
+  /** Resolved theme actually applied to the page (system is resolved to pale/terminal). */
   theme: ThemeId;
-  toggleTheme: () => void;
+  /** Raw user choice, including "system". */
+  preference: ThemePreference;
+  setPreference: (preference: ThemePreference) => void;
 }
 
 const ThemeContext = createContext<ThemeContextValue | null>(null);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = useState<ThemeId>("pale");
+  const [preference, setPreferenceState] = useState<ThemePreference>("pale");
+  const [prefersDark, setPrefersDark] = useState(false);
 
   useEffect(() => {
-    // Reads a client-only value (localStorage) after mount, so the initial
-    // render matches SSR output and only updates once hydration is safe.
+    // Reads client-only values (localStorage, matchMedia) after mount, so the
+    // initial render matches SSR output and only updates once hydration is safe.
     const stored = window.localStorage.getItem(STORAGE_KEY);
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    if (stored === "pale" || stored === "terminal") setTheme(stored);
+    if (stored === "pale" || stored === "terminal" || stored === "system") {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setPreferenceState(stored);
+    }
+
+    const media = window.matchMedia("(prefers-color-scheme: dark)");
+    setPrefersDark(media.matches);
+    const handleChange = (event: MediaQueryListEvent) => setPrefersDark(event.matches);
+    media.addEventListener("change", handleChange);
+    return () => media.removeEventListener("change", handleChange);
   }, []);
+
+  const theme: ThemeId = preference === "system" ? (prefersDark ? "terminal" : "pale") : preference;
 
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
-    window.localStorage.setItem(STORAGE_KEY, theme);
   }, [theme]);
 
-  const toggleTheme = useCallback(() => {
-    setTheme((t) => (t === "pale" ? "terminal" : "pale"));
+  const setPreference = useCallback((next: ThemePreference) => {
+    setPreferenceState(next);
+    window.localStorage.setItem(STORAGE_KEY, next);
   }, []);
 
-  return <ThemeContext.Provider value={{ theme, toggleTheme }}>{children}</ThemeContext.Provider>;
+  return (
+    <ThemeContext.Provider value={{ theme, preference, setPreference }}>{children}</ThemeContext.Provider>
+  );
 }
 
 export function useTheme(): ThemeContextValue {
