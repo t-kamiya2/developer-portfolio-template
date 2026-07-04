@@ -2,6 +2,10 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## 言語
+
+このリポジトリでの作業はすべて日本語で行うこと。ユーザーへの応答・説明はもちろん、コミットメッセージ、PRのタイトルや本文、git操作の説明など、あらゆるやり取りを日本語で行う。
+
 ## 概要
 
 Next.js (App Router) + TypeScript + Tailwind CSS v4 で構築された、日本語のエンジニア向けポートフォリオサイトのテンプレート。`src/lib/portfolio-data.ts` の内容は個人情報を含まないよう完全にジェネリック化されたサンプルデータであり、実データは別のPrivateリポジトリで管理される(README.md参照)。
