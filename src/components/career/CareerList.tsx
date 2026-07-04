@@ -10,7 +10,7 @@ export function CareerList() {
   const { theme } = useTheme();
   const copy = themeCopy[theme];
   const isTerminal = theme === "terminal";
-  const [openIdx, setOpenIdx] = useState(0);
+  const [openIdxs, setOpenIdxs] = useState<Set<number>>(() => new Set([0]));
 
   return (
     <div className="mx-auto max-w-3xl px-6 py-16 sm:px-8">
@@ -21,13 +21,41 @@ export function CareerList() {
         {copy.eyebrowPrefix}CAREER
       </div>
       <h1 className="mb-3 text-3xl font-extrabold tracking-tight">職歴・プロジェクト経歴</h1>
-      <p className="mb-10 text-sm" style={{ color: "var(--text-muted)" }}>
+      <p className="mb-3 text-sm" style={{ color: "var(--text-muted)" }}>
         直近から順に、担当プロジェクトを6件掲載しています。カードをクリックすると詳細が開きます。
       </p>
+      <div className="mb-10 flex justify-end gap-2">
+        <button
+          type="button"
+          onClick={() => setOpenIdxs(new Set(projects.map((_, i) => i)))}
+          className="cursor-pointer rounded-lg border px-3 py-1.5 text-xs font-bold transition-colors"
+          style={{
+            borderColor: "var(--accent)",
+            background: "var(--accent-soft)",
+            color: "var(--accent)",
+            fontFamily: isTerminal ? "var(--font-mono)" : "var(--font-sans)",
+          }}
+        >
+          {copy.expandCollapseAll.expand}
+        </button>
+        <button
+          type="button"
+          onClick={() => setOpenIdxs(new Set())}
+          className="cursor-pointer rounded-lg border px-3 py-1.5 text-xs font-bold transition-colors"
+          style={{
+            borderColor: "var(--accent)",
+            background: "var(--accent-soft)",
+            color: "var(--accent)",
+            fontFamily: isTerminal ? "var(--font-mono)" : "var(--font-sans)",
+          }}
+        >
+          {copy.expandCollapseAll.collapse}
+        </button>
+      </div>
 
       <div className="grid gap-4">
         {projects.map((p, idx) => {
-          const isOpen = openIdx === idx;
+          const isOpen = openIdxs.has(idx);
           return (
             <div
               key={p.title}
@@ -36,8 +64,18 @@ export function CareerList() {
             >
               <button
                 type="button"
-                onClick={() => setOpenIdx((cur) => (cur === idx ? -1 : idx))}
-                className="w-full px-6 py-5 text-left"
+                onClick={() =>
+                  setOpenIdxs((cur) => {
+                    const next = new Set(cur);
+                    if (next.has(idx)) {
+                      next.delete(idx);
+                    } else {
+                      next.add(idx);
+                    }
+                    return next;
+                  })
+                }
+                className="w-full cursor-pointer px-6 py-5 text-left"
               >
                 <div className="flex items-center justify-between gap-4">
                   <div className="text-xs font-semibold" style={{ fontFamily: "var(--font-mono)", color: "var(--accent)" }}>
