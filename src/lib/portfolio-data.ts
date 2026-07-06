@@ -1,15 +1,22 @@
 // Sample data for the skill-sheet portfolio site.
 // Fully genericized for public display — no real PII.
 
+export interface HeroHighlight {
+  value: string;
+  label: string;
+}
+
 export interface Profile {
   role: string;
   tagline: string;
-  years: string;
   summary: string[];
   heroEyebrow: string;
   heroHeadline: string[];
-  heroStackLabel: string;
-  heroStackSubLabel: string;
+  highlights: {
+    primary: HeroHighlight;
+    secondary1: HeroHighlight;
+    secondary2: HeroHighlight;
+  };
 }
 
 export interface Strength {
@@ -49,7 +56,6 @@ export const profile: Profile = {
   role: "フルスタックエンジニア",
   tagline:
     "要件定義から設計・実装・テスト・保守運用まで、一貫して対応できるエンジニア",
-  years: "10年以上",
   summary: [
     "エンジニアとして10年以上のキャリアがあり、要件定義から設計、実装、テスト、保守運用まで一通り経験。自走して作業が可能です。",
     "SIer企業での受託開発・社内SEを経てフリーランスへ。Javaでのバックエンド開発を軸に、C#・JavaScript/TypeScript・Vue.js・React・Pythonを習得しフルスタックで従事しています。",
@@ -57,8 +63,11 @@ export const profile: Profile = {
   ],
   heroEyebrow: "FULL-STACK ENGINEER",
   heroHeadline: ["要件定義から運用まで、", "一貫して任せられる", "エンジニアです。"],
-  heroStackLabel: "Full-stack",
-  heroStackSubLabel: "要件定義〜保守運用",
+  highlights: {
+    primary: { value: "10年以上", label: "堅牢な業務システムからモダンSaaSまで" },
+    secondary1: { value: "6件", label: "要件定義〜保守運用まで一貫対応" },
+    secondary2: { value: "Full-Stack", label: "Java・C#・TypeScript・Pythonを横断" },
+  },
 };
 
 export const strengths: Strength[] = [

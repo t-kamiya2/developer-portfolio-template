@@ -4,7 +4,7 @@ import { Fragment } from "react";
 import Link from "next/link";
 import { useTheme } from "@/components/theme/ThemeProvider";
 import { themeCopy } from "@/lib/theme-copy";
-import { profile, projects } from "@/lib/portfolio-data";
+import { profile } from "@/lib/portfolio-data";
 
 const ctaButtonStyle = (bg: string, color: string, mono: boolean): React.CSSProperties => ({
   background: bg,
@@ -86,26 +86,26 @@ export function Hero() {
         >
           <div className="p-6" style={{ background: "var(--card)" }}>
             <div className="font-bold" style={{ fontFamily: "var(--font-mono)", fontSize: 30, color: "var(--accent)" }}>
-              {profile.years}
+              {profile.highlights.primary.value}
             </div>
             <div className="mt-1.5 text-xs" style={{ color: "var(--text-muted)" }}>
-              開発経験
+              {profile.highlights.primary.label}
             </div>
           </div>
           <div className="p-6" style={{ background: "var(--card)" }}>
             <div className="font-bold" style={{ fontFamily: "var(--font-mono)", fontSize: 30, color: "var(--accent-orange)" }}>
-              {copy.projectCount(projects.length)}
+              {profile.highlights.secondary1.value}
             </div>
             <div className="mt-1.5 text-xs" style={{ color: "var(--text-muted)" }}>
-              主要プロジェクト
+              {profile.highlights.secondary1.label}
             </div>
           </div>
           <div className="p-6" style={{ background: "var(--card)" }}>
             <div className="font-bold" style={{ fontFamily: "var(--font-mono)", fontSize: 20, color: "var(--accent-purple)" }}>
-              {profile.heroStackLabel}
+              {profile.highlights.secondary2.value}
             </div>
             <div className="mt-1.5 text-xs" style={{ color: "var(--text-muted)" }}>
-              {profile.heroStackSubLabel}
+              {profile.highlights.secondary2.label}
             </div>
           </div>
         </div>
@@ -124,27 +124,27 @@ export function Hero() {
       <div className="grid gap-3.5">
         <div className="rounded-2xl border p-6" style={{ background: "var(--accent-soft)", borderColor: "var(--border)" }}>
           <div className="text-[34px] font-extrabold tracking-tight" style={{ color: "var(--accent)" }}>
-            {profile.years}
+            {profile.highlights.primary.value}
           </div>
           <div className="mt-1 text-[13px]" style={{ color: "var(--text-muted)" }}>
-            開発経験
+            {profile.highlights.primary.label}
           </div>
         </div>
         <div className="grid grid-cols-2 gap-3.5">
           <div className="rounded-2xl border p-5" style={{ background: "var(--accent-orange-soft)", borderColor: "var(--border)" }}>
             <div className="text-2xl font-extrabold" style={{ color: "var(--accent-orange)" }}>
-              {copy.projectCount(projects.length)}
+              {profile.highlights.secondary1.value}
             </div>
             <div className="mt-0.5 text-xs" style={{ color: "var(--text-muted)" }}>
-              主要プロジェクト
+              {profile.highlights.secondary1.label}
             </div>
           </div>
           <div className="rounded-2xl border p-5" style={{ background: "var(--accent-purple-soft)", borderColor: "var(--border)" }}>
             <div className="text-2xl font-extrabold" style={{ color: "var(--accent-purple)" }}>
-              {profile.heroStackLabel}
+              {profile.highlights.secondary2.value}
             </div>
             <div className="mt-0.5 text-xs" style={{ color: "var(--text-muted)" }}>
-              {profile.heroStackSubLabel}
+              {profile.highlights.secondary2.label}
             </div>
           </div>
         </div>
