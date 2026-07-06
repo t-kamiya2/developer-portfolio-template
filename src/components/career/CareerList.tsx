@@ -92,19 +92,23 @@ export function CareerList() {
                   </div>
                 </div>
                 <div className="my-2.5 text-lg font-extrabold leading-snug tracking-tight">{p.title}</div>
-                <div className="flex flex-wrap gap-2">
-                  <span
-                    className="rounded-md px-2.5 py-1 text-xs font-bold"
-                    style={{ background: "var(--accent-purple-soft)", color: "var(--accent-purple)" }}
-                  >
-                    {p.role}
-                  </span>
-                  <span
-                    className="rounded-md px-2.5 py-1 text-xs font-bold"
-                    style={{ background: "var(--accent-orange-soft)", color: "var(--accent-orange)" }}
-                  >
-                    {p.scale}
-                  </span>
+                <div className="flex flex-col gap-1.5">
+                  {p.roles.map((r, i) => (
+                    <div key={i} className="flex flex-wrap gap-2">
+                      <span
+                        className="rounded-md px-2.5 py-1 text-xs font-bold"
+                        style={{ background: "var(--accent-purple-soft)", color: "var(--accent-purple)" }}
+                      >
+                        {r.role}
+                      </span>
+                      <span
+                        className="rounded-md px-2.5 py-1 text-xs font-bold"
+                        style={{ background: "var(--accent-orange-soft)", color: "var(--accent-orange)" }}
+                      >
+                        {r.scale}
+                      </span>
+                    </div>
+                  ))}
                 </div>
                 <div className="mt-3.5 flex flex-wrap gap-1.5">
                   {ALL_STEPS.map((label) => {

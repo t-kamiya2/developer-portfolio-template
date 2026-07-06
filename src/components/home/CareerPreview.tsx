@@ -50,8 +50,12 @@ export function CareerPreview() {
             <div className="mb-2.5 text-sm font-bold leading-snug" style={{ color: "var(--text)" }}>
               {p.title}
             </div>
-            <div className="text-xs" style={{ color: "var(--text-muted)" }}>
-              {p.role} ・ {p.scale}
+            <div className="flex flex-col gap-0.5 text-xs" style={{ color: "var(--text-muted)" }}>
+              {p.roles.map((r, i) => (
+                <div key={i}>
+                  {r.role} ・ {r.scale}
+                </div>
+              ))}
             </div>
           </Link>
         ))}

@@ -36,11 +36,15 @@ export interface SkillGroup {
   items: SkillItem[];
 }
 
+export interface ProjectRole {
+  role: string;
+  scale: string;
+}
+
 export interface Project {
   period: string;
   title: string;
-  role: string;
-  scale: string;
+  roles: ProjectRole[];
   process: string[];
   stack: string[];
   body: string[];
@@ -101,8 +105,7 @@ export const projects: Project[] = [
   {
     period: "2024年 〜 現在",
     title: "ECサイトの新規開発・保守運用",
-    role: "メンバー",
-    scale: "6〜10名",
+    roles: [{ role: "メンバー", scale: "6〜10名" }],
     process: ["要件定義", "基本設計", "詳細設計", "製造・実装", "テスト", "保守・運用"],
     stack: ["TypeScript", "React", "Node.js", "GCP", "Cloud Run", "Firestore", "GitHub"],
     body: [
@@ -116,8 +119,7 @@ export const projects: Project[] = [
   {
     period: "2023年 〜 2024年",
     title: "業務支援ツールの開発",
-    role: "メンバー",
-    scale: "1〜5名",
+    roles: [{ role: "メンバー", scale: "1〜5名" }],
     process: ["基本設計", "詳細設計", "製造・実装", "単体テスト", "結合テスト"],
     stack: ["Python", "Flask", "React", "Azure", "Azure Functions", "Azure WebApp", "Docker", "GitHub"],
     body: [
@@ -131,8 +133,7 @@ export const projects: Project[] = [
   {
     period: "2022年 〜 2023年",
     title: "会計システムのリニューアル(C# WebAPI + React)",
-    role: "メンバー",
-    scale: "100名以上",
+    roles: [{ role: "メンバー", scale: "100名以上" }],
     process: ["詳細設計", "製造・実装", "単体テスト"],
     stack: ["C#", ".NET Core", "TypeScript", "React", "Redux", "SQL Server"],
     body: [
@@ -145,8 +146,7 @@ export const projects: Project[] = [
   {
     period: "2019年 〜 2022年",
     title: "自社SaaS製品のフロント/バックエンド開発",
-    role: "リーダー",
-    scale: "11〜50名",
+    roles: [{ role: "リーダー", scale: "11〜50名" }],
     process: ["要件定義", "基本設計", "詳細設計", "製造・実装", "テスト", "保守・運用"],
     stack: ["TypeScript", "Vue.js", "Quasar", "Backlog", "Git"],
     body: [
@@ -159,8 +159,7 @@ export const projects: Project[] = [
   {
     period: "2016年 〜 2019年",
     title: "社内SEとして業務効率化システムの企画〜運用を一貫担当",
-    role: "リーダー",
-    scale: "6〜10名",
+    roles: [{ role: "リーダー", scale: "6〜10名" }],
     process: ["要件定義", "製造・実装", "テスト", "保守・運用"],
     stack: ["GCP", "SQL Server", "AWS", "C#"],
     body: [
@@ -173,8 +172,10 @@ export const projects: Project[] = [
   {
     period: "2013年 〜 2016年",
     title: "業務システム開発プロジェクト(SES)",
-    role: "リーダー",
-    scale: "100名以上",
+    roles: [
+      { role: "リーダー", scale: "6〜10名" },
+      { role: "メンバー", scale: "5〜100名以上(複数PJ)" },
+    ],
     process: ["要件定義", "基本設計", "詳細設計", "製造・実装", "単体テスト"],
     stack: ["Java", "C#", "PostgreSQL", ".NET Framework", "Spring"],
     body: [
