@@ -9,7 +9,7 @@ export const themeCopy = {
     strengthIndex: (i: number) => String(i + 1),
     toggleLabel: { open: "詳細を見る ▼", close: "閉じる ▲" },
     expandCollapseAll: { expand: "すべて展開", collapse: "すべて折りたたむ" },
-    bullet: "▸",
+    bullet: "•",
   },
   terminal: {
     logo: ">_ engineer.portfolio",
@@ -19,6 +19,6 @@ export const themeCopy = {
     strengthIndex: (i: number) => String(i + 1).padStart(2, "0"),
     toggleLabel: { open: "detail ▼", close: "close ▲" },
     expandCollapseAll: { expand: "expand all", collapse: "collapse all" },
-    bullet: "›",
+    bullet: "-",
   },
 } as const satisfies Record<ThemeId, unknown>;
